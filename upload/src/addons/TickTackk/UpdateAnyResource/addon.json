@@ -16,6 +16,10 @@
             2000670,
             "XenForo 2.0.6+"
         ],
+        "XFRM": [
+            2000070,
+            "XenForo Resource Manager 2.0.0+"
+        ],
         "php": [
             "5.6.0",
             "PHP 5.6.0+"
