@@ -1,0 +1,9 @@
+{
+    "template": "xfrm_watched_resource_update",
+    "description": "Make use of User relation in XF:ResourceUpdate entity",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "str_replace",
+    "find": "username_link_email($resource.User, $resource.username),",
+    "replace": "username_link_email($update.User, $update.username),"
+}

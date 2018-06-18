@@ -1,0 +1,6 @@
+{
+    "from_class": "XFRM\\Entity\\ResourceVersion",
+    "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Entity\\ResourceVersion",
+    "execute_order": 15,
+    "active": true
+}

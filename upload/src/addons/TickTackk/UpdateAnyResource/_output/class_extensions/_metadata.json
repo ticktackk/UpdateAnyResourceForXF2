@@ -1,0 +1,23 @@
+{
+    "XFRM-Entity-ResourceItem_TickTackk-UpdateAnyResource-XFRM-Entity-ResourceItem.json": {
+        "hash": "fa37d39fb198bd599f91d817963acf19"
+    },
+    "XFRM-Entity-ResourceUpdate_TickTackk-UpdateAnyResource-XFRM-Entity-ResourceUpdate.json": {
+        "hash": "0da2ec9091c7343cb254d3e441f54bdd"
+    },
+    "XFRM-Entity-ResourceVersion_TickTackk-UpdateAnyResource-XFRM-Entity-ResourceVersion.json": {
+        "hash": "348d562a3e738c8321cc69de0b7f9daa"
+    },
+    "XFRM-Notifier-ResourceUpdate-ResourceWatch_TickTackk-UpdateAnyResource-XFRM-Notifier-ResourceUpdate-ResourceWatch.json": {
+        "hash": "255d808bfea21f73c26bc1d909f3f2f1"
+    },
+    "XFRM-Service-ResourceItem-Create_TickTackk-UpdateAnyResource-XFRM-Service-ResourceItem-Create.json": {
+        "hash": "f3c707b653a5f38ab76e5fc5af801f5b"
+    },
+    "XFRM-Service-ResourceUpdate-Create_TickTackk-UpdateAnyResource-XFRM-Service-ResourceUpdate-Create.json": {
+        "hash": "d8fdd9d66e0cc470efe6221731a4b165"
+    },
+    "XFRM-Service-ResourceVersion-Create_TickTackk-UpdateAnyResource-XFRM-Service-ResourceVersion-Create.json": {
+        "hash": "47f9a52e3285c6511357fed0a6c98da8"
+    }
+}
