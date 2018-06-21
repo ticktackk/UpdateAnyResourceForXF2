@@ -9,7 +9,8 @@
     "faq_url": "",
     "support_url": "https://xenforo.com/community/conversations/custom-add-on.80680/",
     "extra_urls": {
-        "Twitter": "https://twitter.com/t1cktackk"
+        "Twitter": "https://twitter.com/t1cktackk",
+        "Discord": "https://discord.gg/qdwgUpP"
     },
     "require": {
         "XF": [
