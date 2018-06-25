@@ -14,6 +14,9 @@
     "XFRM-Service-ResourceItem-Create_TickTackk-UpdateAnyResource-XFRM-Service-ResourceItem-Create.json": {
         "hash": "f3c707b653a5f38ab76e5fc5af801f5b"
     },
+    "XFRM-Service-ResourceItem-Reassign_TickTackk-UpdateAnyResource-XFRM-Service-ResourceItem-Reassign.json": {
+        "hash": "7fd8d4d4974b191c00bcc161e8c0b3a3"
+    },
     "XFRM-Service-ResourceUpdate-Create_TickTackk-UpdateAnyResource-XFRM-Service-ResourceUpdate-Create.json": {
         "hash": "d8fdd9d66e0cc470efe6221731a4b165"
     },
