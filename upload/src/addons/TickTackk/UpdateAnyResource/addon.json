@@ -2,12 +2,12 @@
     "legacy_addon_id": "",
     "title": "Update Any Resource",
     "description": "Allows users with permission to add new update to any resource",
-    "version_id": 1000011,
-    "version_string": "1.0.0 Alpha 1",
+    "version_id": 1000012,
+    "version_string": "1.0.0 Alpha 2",
     "dev": "TickTackk",
     "dev_url": "https://xenforo.com/community/members/batpool52.90375/",
     "faq_url": "",
-    "support_url": "https://xenforo.com/community/conversations/custom-add-on.80680/",
+    "support_url": "https://xenforo.com/community/threads/update-any-resource.149009/",
     "extra_urls": {
         "Twitter": "https://twitter.com/t1cktackk",
         "Discord": "https://discord.gg/qdwgUpP"
