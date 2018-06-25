@@ -38,6 +38,9 @@ class Create extends XFCP_Create
         }
     }
 
+    /**
+     * @return mixed|null|string|string[]
+     */
     protected function getThreadReplyMessage()
     {
         $resource = $this->resource;
@@ -50,6 +53,7 @@ class Create extends XFCP_Create
             null
         );
 
+        /** @noinspection PhpUndefinedFieldInspection */
         $phrase = \XF::phrase('xfrm_resource_thread_update', [
             'title' => $update->title_,
             'resource_title' => $resource->title_,

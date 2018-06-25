@@ -2,7 +2,6 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
-use TickTackk\UpdateAnyResource\Globals;
 use XF\Mvc\Entity\Structure;
 
 /**

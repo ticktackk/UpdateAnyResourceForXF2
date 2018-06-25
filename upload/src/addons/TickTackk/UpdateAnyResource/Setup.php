@@ -7,7 +7,6 @@ use XF\AddOn\StepRunnerInstallTrait;
 use XF\AddOn\StepRunnerUninstallTrait;
 use XF\AddOn\StepRunnerUpgradeTrait;
 use XF\Db\Schema\Alter;
-use XF\Db\Schema\Create;
 
 /**
  * Class Setup
