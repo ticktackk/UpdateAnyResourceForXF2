@@ -28,7 +28,7 @@ class ResourceItem extends XFCP_ResourceItem
                 throw new \LogicException('Expected entity to be instance of Entity.');
             }
 
-            if (!$entity->user_id)
+            if (!$entity->user_id_)
             {
                 return parent::canEdit($error);
             }

@@ -24,7 +24,7 @@ class Create extends XFCP_Create
     {
         parent::__construct($app, $resource);
 
-        if (!$this->update->user_id)
+        if (!$this->update->user_id_)
         {
             $visitor = \XF::visitor();
 
