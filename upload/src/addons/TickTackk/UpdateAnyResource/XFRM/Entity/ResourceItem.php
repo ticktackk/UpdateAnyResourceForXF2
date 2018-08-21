@@ -45,7 +45,7 @@ class ResourceItem extends XFCP_ResourceItem
             }
 
             return (
-                $entity->user_id == $visitor->user_id
+                $entity->user_id === $visitor->user_id
                 && $this->hasPermission('updateOwn')
             );
         }
@@ -73,12 +73,42 @@ class ResourceItem extends XFCP_ResourceItem
             {
                 return $this->hasPermission('updateAny');
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         return parent::canReleaseUpdate($error);
+    }
+
+    /**
+     * @return \XF\Mvc\Entity\Entity
+     */
+    public function getNewUpdate()
+    {
+        $update = parent::getNewUpdate();
+
+        if ($this->exists())
+        {
+            $update->user_id = $this->user_id;
+            $update->username = $this->username;
+        }
+
+        return $update;
+    }
+
+    /**
+     * @return \XF\Mvc\Entity\Entity
+     */
+    public function getNewVersion()
+    {
+        $version = parent::getNewVersion();
+
+        if ($this->exists())
+        {
+            $version->user_id = $this->user_id;
+            $version->username = $this->username;
+        }
+
+        return $version;
     }
 }

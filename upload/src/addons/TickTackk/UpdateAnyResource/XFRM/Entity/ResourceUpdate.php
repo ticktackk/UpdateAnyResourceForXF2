@@ -12,6 +12,7 @@ use XF\Mvc\Entity\Structure;
  *
  * COLUMNS
  * @property int user_id
+ * @property int user_id_
  * @property string username
  *
  * RELATIONS
@@ -48,12 +49,12 @@ class ResourceUpdate extends XFCP_ResourceUpdate
         $visitor = \XF::visitor();
         $resource = $this->Resource;
 
-        if ($this->isDescription() || !$visitor->user_id || !$resource)
+        if (!$visitor->user_id|| !$resource || $this->isDescription())
         {
             return false;
         }
 
-        if ($type != 'soft')
+        if ($type !== 'soft')
         {
             return $resource->hasPermission('hardDeleteAny');
         }
@@ -64,7 +65,7 @@ class ResourceUpdate extends XFCP_ResourceUpdate
         }
 
         return (
-            $this->user_id == $visitor->user_id
+            $this->user_id === $visitor->user_id
             && $resource->hasPermission('updateOwn')
         );
     }
@@ -80,7 +81,7 @@ class ResourceUpdate extends XFCP_ResourceUpdate
         return (
             $resource
             && $resource->canSendModeratorActionAlert()
-            && $this->message_state == 'visible'
+            && $this->message_state === 'visible'
             && $this->user_id !== $visitor->user_id
         );
     }

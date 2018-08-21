@@ -6,19 +6,12 @@ namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem;
  * Class Create
  *
  * @package TickTackk\UpdateAnyResource
+ *
+ * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $description
+ * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion $version
  */
 class Create extends XFCP_Create
 {
-    /**
-     * @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate
-     */
-    protected $description;
-
-    /**
-     * @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion
-     */
-    protected $version;
-
     protected function setupDefaults()
     {
         parent::setupDefaults();

@@ -6,14 +6,11 @@ namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceVersion;
  * Class Create
  *
  * @package TickTackk\UpdateAnyResource
+ *
+ * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion $version
  */
 class Create extends XFCP_Create
 {
-    /**
-     * @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion
-     */
-    protected $version;
-
     /**
      * Create constructor.
      *
@@ -30,7 +27,7 @@ class Create extends XFCP_Create
 
             if (!$visitor->user_id)
             {
-                throw new \LogicException("Guests cannot add new version to resources.");
+                throw new \LogicException('Guests cannot add new version to resources.');
             }
 
             $this->version->user_id = $visitor->user_id;

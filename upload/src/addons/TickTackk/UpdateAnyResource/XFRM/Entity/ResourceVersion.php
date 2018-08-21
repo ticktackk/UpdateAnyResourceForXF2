@@ -34,12 +34,12 @@ class ResourceVersion extends XFCP_ResourceVersion
             return false;
         }
 
-        if ($resource->current_version_id == $this->resource_version_id)
+        if ($resource->current_version_id === $this->resource_version_id)
         {
             return false;
         }
 
-        if ($type != 'soft')
+        if ($type !== 'soft')
         {
             return $resource->hasPermission('hardDeleteAny');
         }
@@ -50,7 +50,7 @@ class ResourceVersion extends XFCP_ResourceVersion
         }
 
         return (
-            $this->user_id == $visitor->user_id
+            $this->user_id === $visitor->user_id
             && $resource->hasPermission('updateOwn')
         );
     }

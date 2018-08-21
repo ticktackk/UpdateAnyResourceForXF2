@@ -24,12 +24,7 @@ class ResourceWatch extends XFCP_ResourceWatch
         /** @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $update */
         $update = $this->update;
 
-        if ($user->user_id == $update->user_id || $user->isIgnoring($update->user_id))
-        {
-            return false;
-        }
-
-        return true;
+        return !($user->user_id === $update->user_id_ || $user->isIgnoring($update->user_id_));
     }
 
     /**
@@ -54,7 +49,7 @@ class ResourceWatch extends XFCP_ResourceWatch
      */
     public function sendEmail(\XF\Entity\User $user)
     {
-        if (!$user->email || $user->user_state != 'valid')
+        if (!$user->email || $user->user_state !== 'valid')
         {
             return false;
         }
