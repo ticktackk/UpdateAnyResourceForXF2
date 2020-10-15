@@ -1,13 +1,25 @@
-# UpdateAnyResourceForXF2
+Update Any Resource for XenForo 2.0.6+
+======================================
 
-Allows members with permission to update any resource.
+Description
+-----------
 
-## Permissions
-- Resource moderator permissions
-  - Update any resource
+Allows users with permission to add new update to any resource
 
-## Funding
-This add-on was funded by [FrederikP](https://xenforo.com/community/members/135016/).
+Requirements
+------------
 
-## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+- XenForo Resource Manager 2.0.0+
+- PHP 5.6.0+
+
+Permissions
+-----------
+
+#### Resource moderator permissions
+
+- Update any resource
+
+License
+-------
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/ticktackk/UpdateAnyResourceForXF2/blob/master/LICENSE.md) file for details.
