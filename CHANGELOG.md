@@ -6,6 +6,7 @@ CHANGELOG
 - **Change:** Increase minimum XenForo version requirement to 2.1.10 Patch 2
 - **Change:** Increase minimum XenForo Resource Manager version requirement to 2.1.4
 - **Change:** Use consistent listener execution order (#2)
+- **Fix:** XenForo Resource Manager 2.2 compatibility (#1)
 
 ## 1.0.0 (`1000070`)
 
