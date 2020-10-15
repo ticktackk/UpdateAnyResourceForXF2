@@ -17,6 +17,7 @@ namespace TickTackk\UpdateAnyResource\XFRM\Notifier\ResourceUpdate
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem
 {
+	class XFCP_ChangeType extends \XFRM\Service\ResourceItem\ChangeType {}
 	class XFCP_Create extends \XFRM\Service\ResourceItem\Create {}
 	class XFCP_Reassign extends \XFRM\Service\ResourceItem\Reassign {}
 }
