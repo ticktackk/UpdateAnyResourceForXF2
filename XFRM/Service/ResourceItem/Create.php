@@ -2,13 +2,12 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem;
 
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion as ExtendedResourceVersionEntity;
+
 /**
- * Class Create
- *
- * @package TickTackk\UpdateAnyResource
- *
- * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $description
- * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion $version
+ * @method  ExtendedResourceUpdateEntity getDescription()
+ * @method  ExtendedResourceVersionEntity getVersion()
  */
 class Create extends XFCP_Create
 {
@@ -16,10 +15,14 @@ class Create extends XFCP_Create
     {
         parent::setupDefaults();
 
-        $this->description->user_id = $this->resource->user_id;
-        $this->description->username = $this->resource->username;
+        $resource = $this->getResource();
+        $description = $this->getDescription();
+        $version = $this->getVersion();
 
-        $this->version->user_id = $this->resource->user_id;
-        $this->version->username = $this->resource->username;
+        $description->user_id = $resource->user_id;
+        $description->username = $resource->username;
+
+        $version->user_id = $resource->user_id;
+        $version->username = $resource->username;
     }
 }

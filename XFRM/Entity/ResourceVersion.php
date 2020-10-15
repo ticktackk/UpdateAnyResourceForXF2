@@ -3,6 +3,8 @@
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
 use XF\Mvc\Entity\Structure;
+use XF\Phrase;
+use XF\Entity\User as UserEntity;
 
 /**
  * Class ResourceVersion
@@ -14,13 +16,13 @@ use XF\Mvc\Entity\Structure;
  * @property string username
  *
  * RELATIONS
- * @property \XF\Entity\User User
+ * @property UserEntity User
  */
 class ResourceVersion extends XFCP_ResourceVersion
 {
     /**
-     * @param string $type
-     * @param null   $error
+     * @param string      $type
+     * @param Phrase|null $error
      *
      * @return bool
      */
@@ -66,7 +68,7 @@ class ResourceVersion extends XFCP_ResourceVersion
 
         $structure->columns['user_id'] = ['type' => self::UINT, 'required' => true];
         $structure->columns['username'] = ['type' => self::STR, 'maxLength' => 50,
-                                           'required' => 'please_enter_valid_name'
+            'required' => 'please_enter_valid_name'
         ];
         $structure->relations['User'] = [
             'entity' => 'XF:User',

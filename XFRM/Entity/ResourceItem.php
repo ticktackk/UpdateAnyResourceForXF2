@@ -3,27 +3,26 @@
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
 use TickTackk\UpdateAnyResource\Globals;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion as ExtendedResourceVersionEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+use XF\Mvc\Entity\Entity;
+use XF\Phrase;
 
-/**
- * Class ResourceItem
- *
- * @package TickTackk\UpdateAnyResource
- */
 class ResourceItem extends XFCP_ResourceItem
 {
     /**
-     * @param null $error
+     * @param Phrase|null $error
      *
      * @return bool
      */
     public function canEdit(&$error = null)
     {
-        /** @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion|\TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $entity */
+        /** @var ExtendedResourceVersionEntity|ExtendedResourceUpdateEntity $entity */
         $entity = Globals::$makeUseOfUpdateAnyPermission;
 
         if ($entity)
         {
-            if (!$entity instanceof \XF\Mvc\Entity\Entity)
+            if (!$entity instanceof Entity)
             {
                 throw new \LogicException('Expected entity to be instance of Entity.');
             }
@@ -54,7 +53,7 @@ class ResourceItem extends XFCP_ResourceItem
     }
 
     /**
-     * @param null $error
+     * @param Phrase|null $error
      *
      * @return bool
      */

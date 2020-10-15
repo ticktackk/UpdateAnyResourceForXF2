@@ -2,39 +2,33 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Notifier\ResourceUpdate;
 
-/**
- * Class ResourceUpdate
- *
- * @package TickTackk\UpdateAnyResource
- */
+use XF\Entity\User as UserEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+
 class ResourceWatch extends XFCP_ResourceWatch
 {
     /**
-     * @param \XF\Entity\User $user
-     *
      * @return bool
      */
-    public function canNotify(\XF\Entity\User $user)
+    public function canNotify(UserEntity $user)
     {
         if (!$this->isApplicable)
         {
             return false;
         }
 
-        /** @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $update */
+        /** @var ExtendedResourceUpdateEntity $update */
         $update = $this->update;
 
         return !($user->user_id === $update->user_id_ || $user->isIgnoring($update->user_id_));
     }
 
     /**
-     * @param \XF\Entity\User $user
-     *
      * @return bool
      */
-    public function sendAlert(\XF\Entity\User $user)
+    public function sendAlert(UserEntity $user)
     {
-        /** @var \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $update */
+        /** @var ExtendedResourceUpdateEntity $update */
         $update = $this->update;
 
         return $this->basicAlert(
@@ -43,11 +37,9 @@ class ResourceWatch extends XFCP_ResourceWatch
     }
 
     /**
-     * @param \XF\Entity\User $user
-     *
      * @return bool
      */
-    public function sendEmail(\XF\Entity\User $user)
+    public function sendEmail(UserEntity $user)
     {
         if (!$user->email || $user->user_state !== 'valid')
         {

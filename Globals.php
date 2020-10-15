@@ -2,17 +2,17 @@
 
 namespace TickTackk\UpdateAnyResource;
 
-/**
- * Class Globals
- *
- * @package TickTackk\UpdateAnyResource
- */
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ResourceUpdateEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion as ResourceVersionEntity;
+
 class Globals
 {
     /**
-     * @var null|\XF\Mvc\Entity\Entity
+     * @var null|ResourceVersionEntity|ResourceUpdateEntity
      */
     public static $makeUseOfUpdateAnyPermission = null;
 
-    private function __construct() { }
+    private function __construct()
+    {
+    }
 }

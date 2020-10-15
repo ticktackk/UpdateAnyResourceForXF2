@@ -2,6 +2,8 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem;
 
+use XF\Entity\User as UserEntity;
+
 /**
  * Class Reassign
  *
@@ -10,14 +12,13 @@ namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem;
 class Reassign extends XFCP_Reassign
 {
     /**
-     * @param \XF\Entity\User $newUser
-     *
      * @return bool
      */
-    public function reassignTo(\XF\Entity\User $newUser)
+    public function reassignTo(UserEntity $newUser)
     {
-        $oldUserId = $this->resource->user_id;
-        $resourceId = $this->resource->resource_id;
+        $resource = $this->getResource();
+        $oldUserId = $resource->user_id;
+        $resourceId = $resource->resource_id;
 
         $reassigned = parent::reassignTo($newUser);
 

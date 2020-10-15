@@ -8,11 +8,6 @@ use XF\AddOn\StepRunnerUninstallTrait;
 use XF\AddOn\StepRunnerUpgradeTrait;
 use XF\Db\Schema\Alter;
 
-/**
- * Class Setup
- *
- * @package TickTackk\UpdateAnyResource
- */
 class Setup extends AbstractSetup
 {
     use StepRunnerInstallTrait;

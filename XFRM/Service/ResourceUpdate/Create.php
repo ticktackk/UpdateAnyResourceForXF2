@@ -2,49 +2,42 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate;
 
+use XF\App as BaseApp;
+use XFRM\Entity\ResourceItem as ResourceItemEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+
 /**
- * Class Create
- *
- * @package TickTackk\UpdateAnyResource
- *
- * @property \TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate $update
+ * @method ExtendedResourceUpdateEntity getUpdate()
  */
 class Create extends XFCP_Create
 {
-    /**
-     * Create constructor.
-     *
-     * @param \XF\App                   $app
-     * @param \XFRM\Entity\ResourceItem $resource
-     */
-    public function __construct(\XF\App $app, \XFRM\Entity\ResourceItem $resource)
+    public function __construct(BaseApp $app, ResourceItemEntity $resource)
     {
         parent::__construct($app, $resource);
 
-        if (!$this->update->user_id_)
+        $visitor = \XF::visitor();
+        if (!$visitor->user_id)
         {
-            $visitor = \XF::visitor();
-
-            if (!$visitor->user_id)
-            {
-                throw new \LogicException('Guests cannot add new update to resources.');
-            }
-
-            $this->update->user_id = $visitor->user_id;
-            $this->update->username = $visitor->username;
+            throw new \LogicException('Guests cannot add new update to resources.');
         }
+
+        $update = $this->getUpdate();
+        $update->user_id = $visitor->user_id;
+        $update->username = $visitor->username;
     }
 
     /**
-     * @return mixed|null|string|string[]
+     * @return string
      */
     protected function getThreadReplyMessage()
     {
-        $resource = $this->resource;
-        $update = $this->update;
+        $resource = $this->getResource();
+        $update = $this->getUpdate();
+        $app = $this->app;
+        $router = $app->router('public');
 
-        $snippet = $this->app->bbCode()->render(
-            $this->app->stringFormatter()->wholeWordTrim($update->message, 500),
+        $snippet = $app->bbCode()->render(
+            $app->stringFormatter()->wholeWordTrim($update->message, 500),
             'bbCodeClean',
             'post',
             null
@@ -56,8 +49,8 @@ class Create extends XFCP_Create
             'resource_title' => $resource->title_,
             'username' => $update->User ? $update->User->username : $update->username,
             'snippet' => $snippet,
-            'resource_link' => $this->app->router('public')->buildLink('canonical:resources', $resource),
-            'update_link' => $this->app->router('public')->buildLink('canonical:resources/update', $update)
+            'resource_link' => $router->buildLink('canonical:resources', $resource),
+            'update_link' => $router->buildLink('canonical:resources/update', $update)
         ]);
 
         return $phrase->render('raw');
