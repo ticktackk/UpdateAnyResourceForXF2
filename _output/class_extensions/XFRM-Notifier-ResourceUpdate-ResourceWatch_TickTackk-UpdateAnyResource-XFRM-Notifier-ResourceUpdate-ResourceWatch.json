@@ -1,6 +1,6 @@
 {
     "from_class": "XFRM\\Notifier\\ResourceUpdate\\ResourceWatch",
     "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Notifier\\ResourceUpdate\\ResourceWatch",
-    "execute_order": 35,
+    "execute_order": 6501,
     "active": true
 }

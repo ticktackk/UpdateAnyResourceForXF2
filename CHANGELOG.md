@@ -1,6 +1,12 @@
 CHANGELOG
 ==========================
 
+## 1.1.0 (`1000170`)
+
+- **Change:** Increase minimum XenForo version requirement to 2.1.10 Patch 2
+- **Change:** Increase minimum XenForo Resource Manager version requirement to 2.1.4
+- **Change:** Use consistent listener execution order (#1)
+
 ## 1.0.0 (`1000070`)
 
 - **Fix:** "Please enter a value for the required field 'user_id'"

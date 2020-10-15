@@ -1,6 +1,6 @@
 {
     "from_class": "XFRM\\Service\\ResourceItem\\Create",
     "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Service\\ResourceItem\\Create",
-    "execute_order": 30,
+    "execute_order": 6501,
     "active": true
 }
