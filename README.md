@@ -1,5 +1,5 @@
-Update Any Resource for XenForo 2.0.6+
-======================================
+Update Any Resource for XenForo 2.1.10.2+
+=========================================
 
 Description
 -----------
@@ -9,8 +9,8 @@ Allows users with permission to add new update to any resource
 Requirements
 ------------
 
-- XenForo Resource Manager 2.0.0+
-- PHP 5.6.0+
+- PHP 7.3+
+- XenForo Resource Manager 2.1.4+
 
 Permissions
 -----------

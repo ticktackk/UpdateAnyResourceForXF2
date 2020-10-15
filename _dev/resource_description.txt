@@ -1,10 +1,10 @@
-[HEADING=1]Update Any Resource for XenForo 2.0.6+[/HEADING]
+[HEADING=1]Update Any Resource for XenForo 2.1.10.2+[/HEADING]
 [HEADING=1]Description[/HEADING]
 Allows users with permission to add new update to any resource
 [HEADING=1]Requirements[/HEADING]
 [LIST]
-[*]XenForo Resource Manager 2.0.0+
-[*]PHP 5.6.0+
+[*]PHP 7.3+
+[*]XenForo Resource Manager 2.1.4+
 [/LIST]
 [HEADING=1]Permissions[/HEADING]
 [HEADING=3]Resource moderator permissions[/HEADING]
