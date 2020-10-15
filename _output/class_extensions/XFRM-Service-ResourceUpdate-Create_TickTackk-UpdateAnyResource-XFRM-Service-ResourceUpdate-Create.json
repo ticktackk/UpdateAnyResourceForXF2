@@ -1,0 +1,6 @@
+{
+    "from_class": "XFRM\\Service\\ResourceUpdate\\Create",
+    "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Service\\ResourceUpdate\\Create",
+    "execute_order": 6501,
+    "active": true
+}

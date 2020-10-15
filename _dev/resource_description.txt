@@ -1,0 +1,17 @@
+[HEADING=1]Update Any Resource for XenForo 2.1.10.2+[/HEADING]
+[HEADING=1]Description[/HEADING]
+Allows users with permission to add new update to any resource
+[HEADING=1]Requirements[/HEADING]
+[LIST]
+[*]PHP 7.3+
+[*]XenForo Resource Manager 2.1.4+
+[/LIST]
+[HEADING=1]Permissions[/HEADING]
+[HEADING=3]Resource moderator permissions[/HEADING]
+[LIST]
+[*]Update any resource
+[/LIST]
+[HEADING=1]Initial funding[/HEADING]
+This add-on was funded by [URL='https://xenforo.com/community/members/135016/']FrederikP[/URL].
+[HEADING=1]License[/HEADING]
+This project is licensed under the MIT License - see the [URL='https://github.com/ticktackk/UpdateAnyResourceForXF2/blob/master/LICENSE.md']LICENSE.md[/URL] file for details.

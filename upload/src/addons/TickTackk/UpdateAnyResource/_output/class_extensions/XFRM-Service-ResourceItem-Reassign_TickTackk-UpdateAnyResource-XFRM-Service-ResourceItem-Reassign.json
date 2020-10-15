@@ -1,6 +1,0 @@
-{
-    "from_class": "XFRM\\Service\\ResourceItem\\Reassign",
-    "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Service\\ResourceItem\\Reassign",
-    "execute_order": 40,
-    "active": true
-}

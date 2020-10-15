@@ -1,0 +1,29 @@
+{
+    "legacy_addon_id": "",
+    "title": "Update Any Resource",
+    "description": "Allows users with permission to add new update to any resource",
+    "version_id": 1010070,
+    "version_string": "1.1.0",
+    "dev": "TickTackk",
+    "dev_url": "https://xenforo.com/community/members/batpool52.90375/",
+    "faq_url": "",
+    "support_url": "https://xenforo.com/community/threads/update-any-resource.149009/",
+    "extra_urls": {
+        "Twitter": "https://twitter.com/t1cktackk"
+    },
+    "require": {
+        "php": [
+            "7.3",
+            "PHP 7.3+"
+        ],
+        "XF": [
+            2011072,
+            "XenForo 2.1.10 Patch 2+"
+        ],
+        "XFRM": [
+            2010470,
+            "XenForo Resource Manager 2.1.4+"
+        ]
+    },
+    "icon": "fa-file-text"
+}

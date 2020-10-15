@@ -1,0 +1,6 @@
+{
+    "from_class": "XFRM\\Service\\ResourceItem\\ChangeType",
+    "to_class": "TickTackk\\UpdateAnyResource\\XFRM\\Service\\ResourceItem\\ChangeType",
+    "execute_order": 6501,
+    "active": true
+}
