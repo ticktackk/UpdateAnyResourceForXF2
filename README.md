@@ -19,6 +19,11 @@ Permissions
 
 - Update any resource
 
+Initial funding
+---------------
+
+This add-on was funded by [FrederikP](https://xenforo.com/community/members/135016/).
+
 License
 -------
 

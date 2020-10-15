@@ -11,5 +11,7 @@ Allows users with permission to add new update to any resource
 [LIST]
 [*]Update any resource
 [/LIST]
+[HEADING=1]Initial funding[/HEADING]
+This add-on was funded by [URL='https://xenforo.com/community/members/135016/']FrederikP[/URL].
 [HEADING=1]License[/HEADING]
 This project is licensed under the MIT License - see the [URL='https://github.com/ticktackk/UpdateAnyResourceForXF2/blob/master/LICENSE.md']LICENSE.md[/URL] file for details.
