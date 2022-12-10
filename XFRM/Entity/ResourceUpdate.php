@@ -73,14 +73,9 @@ class ResourceUpdate extends XFCP_ResourceUpdate
      */
     public function canSendModeratorActionAlert()
     {
-        $visitor = \XF::visitor();
-        $resource = $this->Resource;
-
         return (
-            $resource
-            && $resource->canSendModeratorActionAlert()
-            && $this->message_state === 'visible'
-            && $this->user_id !== $visitor->user_id
+            parent::canSendModeratorActionAlert()
+            && (\XF::visitor()->user_id !== $this->user_id)
         );
     }
 

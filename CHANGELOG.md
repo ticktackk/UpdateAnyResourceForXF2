@@ -1,7 +1,11 @@
 CHANGELOG
 ==========================
 
-## 1.1.0 (`1000170`)
+## 1.1.1 (`1000170`)
+
+- **Fix:** Method `\XFRM\Entity\ResourceUpdate::canSendModeratorActionAlert()` is completely overwritten (#6)
+
+## 1.1.0 (`1000070`)
 
 - **Change:** Increase minimum XenForo version requirement to 2.1.10 Patch 2
 - **Change:** Increase minimum XenForo Resource Manager version requirement to 2.1.4
