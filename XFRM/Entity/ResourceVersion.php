@@ -20,6 +20,22 @@ use XF\Entity\User as UserEntity;
  */
 class ResourceVersion extends XFCP_ResourceVersion
 {
+    public function canDownload(&$error = null)
+    {
+        $resource = $this->Resource;
+        if (!$resource)
+        {
+            return false;
+        }
+
+        $visitor = \XF::visitor();
+
+        return (
+            parent::canDownload($error)
+            || ($visitor->user_id && ($visitor->user_id === $this->user_id))
+        );
+    }
+
     public function canDelete($type = 'soft', &$error = null)
     {
         $resource = $this->Resource;
