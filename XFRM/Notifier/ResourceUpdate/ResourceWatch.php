@@ -20,7 +20,7 @@ class ResourceWatch extends XFCP_ResourceWatch
         /** @var ExtendedResourceUpdateEntity $update */
         $update = $this->update;
 
-        return !($user->user_id === $update->user_id_ || $user->isIgnoring($update->user_id_));
+        return !($user->user_id === $update->tck_uar_user_id || $user->isIgnoring($update->tck_uar_user_id));
     }
 
     /**
@@ -32,7 +32,7 @@ class ResourceWatch extends XFCP_ResourceWatch
         $update = $this->update;
 
         return $this->basicAlert(
-            $user, $update->user_id, $update->username, 'resource_update', $update->resource_update_id, 'insert'
+            $user, $update->tck_uar_user_id, $update->tck_uar_username, 'resource_update', $update->resource_update_id, 'insert'
         );
     }
 

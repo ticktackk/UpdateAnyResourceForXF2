@@ -12,7 +12,7 @@ use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceVersion as ExtendedResourceV
 
 /**
  * COLUMNS
- * @property int $user_id
+ * @property int $tck_uar_user_id
  *
  * METHODS
  * @method mixed setAsSaved(string $key, mixed $value)
@@ -95,8 +95,8 @@ trait ResourceItemTrait
             $teamUser = \XF::visitor();
         }
 
-        $update->user_id = $teamUser->user_id;
-        $update->username = $teamUser->username;
+        $update->tck_uar_user_id = $teamUser->user_id;
+        $update->tck_uar_username = $teamUser->username;
 
         return $update;
     }
@@ -117,8 +117,8 @@ trait ResourceItemTrait
             $teamUser = \XF::visitor();
         }
 
-        $version->user_id = $teamUser->user_id;
-        $version->username = $teamUser->username;
+        $version->tck_uar_user_id = $teamUser->user_id;
+        $version->tck_uar_username = $teamUser->username;
 
         return $version;
     }

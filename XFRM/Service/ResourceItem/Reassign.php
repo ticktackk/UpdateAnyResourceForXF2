@@ -28,9 +28,9 @@ class Reassign extends XFCP_Reassign
             foreach (['xf_rm_resource_update', 'xf_rm_resource_version'] AS $table)
             {
                 $db->update($table, [
-                    'user_id' => $newUser->user_id,
-                    'username' => $newUser->username
-                ], 'user_id = ? AND resource_id = ?', [$oldUserId, $resourceId]);
+                    'tck_uar_user_id' => $newUser->user_id,
+                    'tck_uar_username' => $newUser->username
+                ], 'tck_uar_user_id = ? AND resource_id = ?', [$oldUserId, $resourceId]);
             }
         }
 

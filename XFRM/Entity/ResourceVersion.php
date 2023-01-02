@@ -9,8 +9,8 @@ use XF\Entity\User as UserEntity;
 
 /**
  * COLUMNS
- * @property int user_id
- * @property string username
+ * @property int $tck_uar_user_id
+ * @property string $tck_uar_username
  *
  * RELATIONS
  * @property UserEntity User
@@ -32,7 +32,7 @@ class ResourceVersion extends XFCP_ResourceVersion
 
         return (
             parent::canDownload($error)
-            || ($visitor->user_id && ($visitor->user_id === $this->user_id))
+            || ($visitor->user_id && ($visitor->user_id === $this->tck_uar_user_id))
         );
     }
 
@@ -44,7 +44,7 @@ class ResourceVersion extends XFCP_ResourceVersion
             return false;
         }
 
-        return $resource->runActionForTckUpdateAnyResource($this->user_id, function () use($type, $error)
+        return $resource->runActionForTckUpdateAnyResource($this->tck_uar_user_id, function () use($type, $error)
         {
             return parent::canDelete($type, $error);
         });
@@ -59,14 +59,16 @@ class ResourceVersion extends XFCP_ResourceVersion
     {
         $structure = parent::getStructure($structure);
 
-        $structure->columns['user_id'] = ['type' => self::UINT, 'required' => true];
-        $structure->columns['username'] = ['type' => self::STR, 'maxLength' => 50,
+        $structure->columns['tck_uar_user_id'] = ['type' => self::UINT, 'required' => true];
+        $structure->columns['tck_uar_username'] = ['type' => self::STR, 'maxLength' => 50,
             'required' => 'please_enter_valid_name'
         ];
         $structure->relations['User'] = [
             'entity' => 'XF:User',
             'type' => self::TO_ONE,
-            'conditions' => 'user_id',
+            'conditions' => [
+                ['user_id', '=', '$tck_uar_user_id']
+            ],
             'primary' => true
         ];
 
