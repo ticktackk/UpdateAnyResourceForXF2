@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection PhpIllegalPsrClassPathInspection */
 // ################## THIS IS A GENERATED FILE ##################
 // DO NOT EDIT DIRECTLY. EDIT THE CLASS EXTENSIONS IN THE CONTROL PANEL.
 
@@ -17,17 +18,10 @@ namespace TickTackk\UpdateAnyResource\XFRM\Notifier\ResourceUpdate
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem
 {
-	class XFCP_ChangeType extends \XFRM\Service\ResourceItem\ChangeType {}
-	class XFCP_Create extends \XFRM\Service\ResourceItem\Create {}
 	class XFCP_Reassign extends \XFRM\Service\ResourceItem\Reassign {}
 }
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate
 {
 	class XFCP_Create extends \XFRM\Service\ResourceUpdate\Create {}
-}
-
-namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceVersion
-{
-	class XFCP_Create extends \XFRM\Service\ResourceVersion\Create {}
 }

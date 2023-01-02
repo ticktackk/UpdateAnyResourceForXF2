@@ -3,6 +3,8 @@
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
 use TickTackk\UpdateAnyResource\Globals;
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF21\ResourceItem as XF21ResourceItemEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF22\ResourceItem as XF22ResourceItemEntity;
 use XF\Mvc\Entity\Structure;
 use XF\Phrase;
 use XF\Entity\User as UserEntity;
@@ -15,6 +17,7 @@ use XF\Entity\User as UserEntity;
  *
  * RELATIONS
  * @property UserEntity User
+ * @property ResourceItemTrait|XF21ResourceItemEntity|XF22ResourceItemEntity $Resource
  */
 class ResourceUpdate extends XFCP_ResourceUpdate
 {
@@ -25,15 +28,16 @@ class ResourceUpdate extends XFCP_ResourceUpdate
      */
     public function canEdit(&$error = null)
     {
-        try
+        $resource = $this->Resource;
+        if (!$resource)
         {
-            Globals::$makeUseOfUpdateAnyPermission = $this;
+            return false;
+        }
+
+        return $resource->runActionForTckUpdateAnyResource($this->user_id, function () use($error)
+        {
             return parent::canEdit($error);
-        }
-        finally
-        {
-            Globals::$makeUseOfUpdateAnyPermission = null;
-        }
+        });
     }
 
     /**
@@ -44,28 +48,16 @@ class ResourceUpdate extends XFCP_ResourceUpdate
      */
     public function canDelete($type = 'soft', &$error = null)
     {
-        $visitor = \XF::visitor();
         $resource = $this->Resource;
-
-        if (!$visitor->user_id|| !$resource || $this->isDescription())
+        if (!$resource)
         {
             return false;
         }
 
-        if ($type !== 'soft')
+        return $resource->runActionForTckUpdateAnyResource($this->user_id, function () use($type, $error)
         {
-            return $resource->hasPermission('hardDeleteAny');
-        }
-
-        if ($resource->hasPermission('deleteAny'))
-        {
-            return true;
-        }
-
-        return (
-            $this->user_id === $visitor->user_id
-            && $resource->hasPermission('updateOwn')
-        );
+            return parent::canDelete($type, $error);
+        });
     }
 
     /**

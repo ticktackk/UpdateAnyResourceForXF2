@@ -2,59 +2,36 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF22\ResourceItem as XF22ResourceItemEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF21\ResourceItem as XF21ResourceItemEntity;
 use XF\Mvc\Entity\Structure;
-use XF\Phrase;
 use XF\Entity\User as UserEntity;
 
 /**
- * Class ResourceVersion
- *
- * @package TickTackk\UpdateAnyResource
- *
  * COLUMNS
  * @property int user_id
  * @property string username
  *
  * RELATIONS
  * @property UserEntity User
+ * @property ResourceItemTrait|XF21ResourceItemEntity|XF22ResourceItemEntity $Resource
+ *
+ * @version 1.1.1
  */
 class ResourceVersion extends XFCP_ResourceVersion
 {
-    /**
-     * @param string      $type
-     * @param Phrase|null $error
-     *
-     * @return bool
-     */
     public function canDelete($type = 'soft', &$error = null)
     {
-        $visitor = \XF::visitor();
         $resource = $this->Resource;
-
-        if (!$visitor->user_id || !$resource)
+        if (!$resource)
         {
             return false;
         }
 
-        if ($resource->current_version_id === $this->resource_version_id)
+        return $resource->runActionForTckUpdateAnyResource($this->user_id, function () use($type, $error)
         {
-            return false;
-        }
-
-        if ($type !== 'soft')
-        {
-            return $resource->hasPermission('hardDeleteAny');
-        }
-
-        if ($resource->hasPermission('deleteAny'))
-        {
-            return true;
-        }
-
-        return (
-            $this->user_id === $visitor->user_id
-            && $resource->hasPermission('updateOwn')
-        );
+            return parent::canDelete($type, $error);
+        });
     }
 
     /**

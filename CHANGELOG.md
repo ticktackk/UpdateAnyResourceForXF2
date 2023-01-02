@@ -4,6 +4,7 @@ CHANGELOG
 ## 1.1.1 (`1000170`)
 
 - **Fix:** Since 2.2, moderator action alert cannot be sent if the user is a team member (#6)
+- **Fix:** Since 2.2, team members are unable to post new resource updates (#5)
 
 ## 1.1.0 (`1000070`)
 
