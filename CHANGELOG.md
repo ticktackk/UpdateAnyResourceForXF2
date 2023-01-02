@@ -3,7 +3,7 @@ CHANGELOG
 
 ## 1.1.1 (`1000170`)
 
-- **Fix:** Method `\XFRM\Entity\ResourceUpdate::canSendModeratorActionAlert()` is completely overwritten (#6)
+- **Fix:** Since 2.2, moderator action alert cannot be sent if the user is a team member (#6)
 
 ## 1.1.0 (`1000070`)
 
