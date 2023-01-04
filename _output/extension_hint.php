@@ -24,4 +24,5 @@ namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceItem
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate
 {
 	class XFCP_Create extends \XFRM\Service\ResourceUpdate\Create {}
+	class XFCP_Preparer extends \XFRM\Service\ResourceUpdate\Preparer {}
 }

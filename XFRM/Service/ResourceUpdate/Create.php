@@ -4,40 +4,54 @@ namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate;
 
 use XF\App as BaseApp;
 use XFRM\Entity\ResourceItem as ResourceItemEntity;
+use XF\Entity\Post as PostEntity;
 use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+use TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate\Preparer as ExtendedResourceUpdatePreparerSvc;
 
 /**
  * @method ExtendedResourceUpdateEntity getUpdate()
+ * @method ExtendedResourceUpdatePreparerSvc getUpdatePreparer()
  */
 class Create extends XFCP_Create
 {
+    protected function _save()
+    {
+        try
+        {
+            $this->getUpdatePreparer()->setNullifyUserForTckUpdateAnyResource(true);
+
+            return parent::_save();
+        }
+        finally
+        {
+            $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
+        }
+    }
+
     /**
      * @return string
      */
     protected function getThreadReplyMessage()
     {
         $resource = $this->getResource();
-        $update = $this->getUpdate();
-        $app = $this->app;
-        $router = $app->router('public');
+        $originalUser = $resource->User;
 
-        $snippet = $app->bbCode()->render(
-            $app->stringFormatter()->wholeWordTrim($update->message, 500),
-            'bbCodeClean',
-            'post',
-            null
-        );
+        try
+        {
+            $resource->hydrateRelation('User', \XF::visitor());
 
-        /** @noinspection PhpUndefinedFieldInspection */
-        $phrase = \XF::phrase('xfrm_resource_thread_update', [
-            'title' => $update->title_,
-            'resource_title' => $resource->title_,
-            'username' => $update->User ? $update->User->username : $update->username,
-            'snippet' => $snippet,
-            'resource_link' => $router->buildLink('canonical:resources', $resource),
-            'update_link' => $router->buildLink('canonical:resources/update', $update)
-        ]);
+            return parent::getThreadReplyMessage();
+        }
+        finally
+        {
+            $resource->hydrateRelation('User', $originalUser);
+        }
+    }
 
-        return $phrase->render('raw');
+    protected function afterResourceThreadReplied(PostEntity $post, $existingLastPostDate)
+    {
+        parent::afterResourceThreadReplied($post, $existingLastPostDate);
+
+        $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
     }
 }
