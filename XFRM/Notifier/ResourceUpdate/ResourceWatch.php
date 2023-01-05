@@ -5,6 +5,11 @@ namespace TickTackk\UpdateAnyResource\XFRM\Notifier\ResourceUpdate;
 use XF\Entity\User as UserEntity;
 use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
 
+/**
+ * @property ExtendedResourceUpdateEntity $update
+ *
+ * @version 1.1.1
+ */
 class ResourceWatch extends XFCP_ResourceWatch
 {
     /**
@@ -12,15 +17,8 @@ class ResourceWatch extends XFCP_ResourceWatch
      */
     public function canNotify(UserEntity $user)
     {
-        if (!$this->isApplicable)
-        {
-            return false;
-        }
-
-        /** @var ExtendedResourceUpdateEntity $update */
-        $update = $this->update;
-
-        return !($user->user_id === $update->tck_uar_user_id || $user->isIgnoring($update->tck_uar_user_id));
+        return parent::canNotify($user)
+            && !$user->isIgnoring($this->update->team_user_id);
     }
 
     /**

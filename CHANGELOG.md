@@ -8,6 +8,7 @@ CHANGELOG
 - **Fix:** User who is not team member and made the release cannot download without permission (#7)
 - **Fix:** Username/user id columns added in resource update/version are not prefixed (#8)
 - **Fix:** Since 2.2, Resource update thread reply is made by resource owner (#9)
+- **Fix:** User is alerted for new resource update when ignoring the resource owner (#11)
 
 ## 1.1.0 (`1000070`)
 
