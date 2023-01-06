@@ -11,6 +11,16 @@ Requirements
 
 - PHP 7.3+
 - XenForo Resource Manager 2.1.4+
+- Standard Library by Xon v1.10.0+
+
+Options
+-------
+
+#### XenForo Resource Manager
+
+| Name | Description |
+|---|---|
+| New resource update reply to discussion thread as resource creator | If checked, post made in discussion thread about new resource update will be made as resource creator. |
 
 Permissions
 -----------
