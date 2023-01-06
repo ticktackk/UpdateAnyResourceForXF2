@@ -16,7 +16,14 @@ class Create extends XFCP_Create
     {
         try
         {
-            $this->getUpdatePreparer()->setNullifyUserForTckUpdateAnyResource(true);
+            $options = $this->app->options();
+            if (
+                !isset($options->tckUpdateAnyResource_replyAsResourceCreator)
+                || !$options->tckUpdateAnyResource_replyAsResourceCreator
+            )
+            {
+                $this->getUpdatePreparer()->setNullifyUserForTckUpdateAnyResource(true);
+            }
 
             return parent::_save();
         }
@@ -57,6 +64,13 @@ class Create extends XFCP_Create
     {
         parent::afterResourceThreadReplied($post, $existingLastPostDate);
 
-        $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
+        $options = $this->app->options();
+        if (
+            !isset($options->tckUpdateAnyResource_replyAsResourceCreator)
+            || !$options->tckUpdateAnyResource_replyAsResourceCreator
+        )
+        {
+            $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
+        }
     }
 }
