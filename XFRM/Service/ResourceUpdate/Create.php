@@ -33,16 +33,23 @@ class Create extends XFCP_Create
     {
         $resource = $this->getResource();
         $originalUser = $resource->User;
+        $originalUserId = $resource->user_id;
+        $originalUsername = $resource->username;
 
         try
         {
-            $resource->hydrateRelation('User', \XF::visitor());
+            $visitor = \XF::visitor();
+            $resource->hydrateRelation('User', $visitor);
+            $resource->setAsSaved('user_id', $visitor->user_id);
+            $resource->setAsSaved('username', $visitor->username);
 
             return parent::getThreadReplyMessage();
         }
         finally
         {
             $resource->hydrateRelation('User', $originalUser);
+            $resource->setAsSaved('user_id', $originalUserId);
+            $resource->setAsSaved('username', $originalUsername);
         }
     }
 
