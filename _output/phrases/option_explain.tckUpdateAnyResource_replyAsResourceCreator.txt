@@ -1,0 +1,1 @@
+If checked, post made in discussion thread about new resource update will be made as resource creator.

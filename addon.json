@@ -2,8 +2,8 @@
     "legacy_addon_id": "",
     "title": "Update Any Resource",
     "description": "Allows users with permission to add new update to any resource",
-    "version_id": 1010070,
-    "version_string": "1.1.0",
+    "version_id": 1010170,
+    "version_string": "1.1.1",
     "dev": "TickTackk",
     "dev_url": "https://xenforo.com/community/members/batpool52.90375/",
     "faq_url": "",
@@ -23,6 +23,10 @@
         "XFRM": [
             2010470,
             "XenForo Resource Manager 2.1.4+"
+        ],
+        "SV/StandardLib": [
+            1100000,
+            "Standard Library by Xon v1.10.0+"
         ]
     },
     "icon": "fa-file-text"

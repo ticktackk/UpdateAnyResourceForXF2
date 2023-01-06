@@ -2,59 +2,52 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Entity;
 
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF22\ResourceItem as XF22ResourceItemEntity;
+use TickTackk\UpdateAnyResource\XFRM\Entity\XF21\ResourceItem as XF21ResourceItemEntity;
 use XF\Mvc\Entity\Structure;
-use XF\Phrase;
 use XF\Entity\User as UserEntity;
 
 /**
- * Class ResourceVersion
- *
- * @package TickTackk\UpdateAnyResource
- *
  * COLUMNS
- * @property int user_id
- * @property string username
+ * @property int $tck_uar_user_id
+ * @property string $tck_uar_username
  *
  * RELATIONS
  * @property UserEntity User
+ * @property ResourceItemTrait|XF21ResourceItemEntity|XF22ResourceItemEntity $Resource
+ *
+ * @version 1.1.1
  */
 class ResourceVersion extends XFCP_ResourceVersion
 {
-    /**
-     * @param string      $type
-     * @param Phrase|null $error
-     *
-     * @return bool
-     */
-    public function canDelete($type = 'soft', &$error = null)
+    public function canDownload(&$error = null)
     {
-        $visitor = \XF::visitor();
         $resource = $this->Resource;
-
-        if (!$visitor->user_id || !$resource)
+        if (!$resource)
         {
             return false;
         }
 
-        if ($resource->current_version_id === $this->resource_version_id)
-        {
-            return false;
-        }
-
-        if ($type !== 'soft')
-        {
-            return $resource->hasPermission('hardDeleteAny');
-        }
-
-        if ($resource->hasPermission('deleteAny'))
-        {
-            return true;
-        }
+        $visitor = \XF::visitor();
 
         return (
-            $this->user_id === $visitor->user_id
-            && $resource->hasPermission('updateOwn')
+            parent::canDownload($error)
+            || ($visitor->user_id && ($visitor->user_id === $this->tck_uar_user_id))
         );
+    }
+
+    public function canDelete($type = 'soft', &$error = null)
+    {
+        $resource = $this->Resource;
+        if (!$resource)
+        {
+            return false;
+        }
+
+        return $resource->runActionForTckUpdateAnyResource($this->tck_uar_user_id, function () use($type, $error)
+        {
+            return parent::canDelete($type, $error);
+        });
     }
 
     /**
@@ -66,14 +59,16 @@ class ResourceVersion extends XFCP_ResourceVersion
     {
         $structure = parent::getStructure($structure);
 
-        $structure->columns['user_id'] = ['type' => self::UINT, 'required' => true];
-        $structure->columns['username'] = ['type' => self::STR, 'maxLength' => 50,
+        $structure->columns['tck_uar_user_id'] = ['type' => self::UINT, 'required' => true];
+        $structure->columns['tck_uar_username'] = ['type' => self::STR, 'maxLength' => 50,
             'required' => 'please_enter_valid_name'
         ];
         $structure->relations['User'] = [
             'entity' => 'XF:User',
             'type' => self::TO_ONE,
-            'conditions' => 'user_id',
+            'conditions' => [
+                ['user_id', '=', '$tck_uar_user_id']
+            ],
             'primary' => true
         ];
 

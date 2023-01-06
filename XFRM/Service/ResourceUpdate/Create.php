@@ -2,28 +2,35 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate;
 
-use XF\App as BaseApp;
-use XFRM\Entity\ResourceItem as ResourceItemEntity;
+use XF\Entity\Post as PostEntity;
 use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
+use TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate\Preparer as ExtendedResourceUpdatePreparerSvc;
 
 /**
  * @method ExtendedResourceUpdateEntity getUpdate()
+ * @method ExtendedResourceUpdatePreparerSvc getUpdatePreparer()
  */
 class Create extends XFCP_Create
 {
-    public function __construct(BaseApp $app, ResourceItemEntity $resource)
+    protected function _save()
     {
-        parent::__construct($app, $resource);
-
-        $visitor = \XF::visitor();
-        if (!$visitor->user_id)
+        try
         {
-            throw new \LogicException('Guests cannot add new update to resources.');
-        }
+            $options = $this->app->options();
+            if (
+                !isset($options->tckUpdateAnyResource_replyAsResourceCreator)
+                || !$options->tckUpdateAnyResource_replyAsResourceCreator
+            )
+            {
+                $this->getUpdatePreparer()->setNullifyUserForTckUpdateAnyResource(true);
+            }
 
-        $update = $this->getUpdate();
-        $update->user_id = $visitor->user_id;
-        $update->username = $visitor->username;
+            return parent::_save();
+        }
+        finally
+        {
+            $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
+        }
     }
 
     /**
@@ -32,27 +39,38 @@ class Create extends XFCP_Create
     protected function getThreadReplyMessage()
     {
         $resource = $this->getResource();
-        $update = $this->getUpdate();
-        $app = $this->app;
-        $router = $app->router('public');
+        $originalUser = $resource->User;
+        $originalUserId = $resource->user_id;
+        $originalUsername = $resource->username;
 
-        $snippet = $app->bbCode()->render(
-            $app->stringFormatter()->wholeWordTrim($update->message, 500),
-            'bbCodeClean',
-            'post',
-            null
-        );
+        try
+        {
+            $visitor = \XF::visitor();
+            $resource->hydrateRelation('User', $visitor);
+            $resource->setAsSaved('user_id', $visitor->user_id);
+            $resource->setAsSaved('username', $visitor->username);
 
-        /** @noinspection PhpUndefinedFieldInspection */
-        $phrase = \XF::phrase('xfrm_resource_thread_update', [
-            'title' => $update->title_,
-            'resource_title' => $resource->title_,
-            'username' => $update->User ? $update->User->username : $update->username,
-            'snippet' => $snippet,
-            'resource_link' => $router->buildLink('canonical:resources', $resource),
-            'update_link' => $router->buildLink('canonical:resources/update', $update)
-        ]);
+            return parent::getThreadReplyMessage();
+        }
+        finally
+        {
+            $resource->hydrateRelation('User', $originalUser);
+            $resource->setAsSaved('user_id', $originalUserId);
+            $resource->setAsSaved('username', $originalUsername);
+        }
+    }
 
-        return $phrase->render('raw');
+    protected function afterResourceThreadReplied(PostEntity $post, $existingLastPostDate)
+    {
+        parent::afterResourceThreadReplied($post, $existingLastPostDate);
+
+        $options = $this->app->options();
+        if (
+            !isset($options->tckUpdateAnyResource_replyAsResourceCreator)
+            || !$options->tckUpdateAnyResource_replyAsResourceCreator
+        )
+        {
+            $this->getUpdatePreparer()->restoreOriginalUserForTckUpdateAnyResource();
+        }
     }
 }
