@@ -4,6 +4,7 @@ CHANGELOG
 ## 1.1.1 (`1000170`)
 
 - **New:** Allow the ability to replicate native create thread reply for resource update under resource owner (#10)
+- **Change:** Require Standard Library v1.10.0 or higher by Xon
 - **Fix:** Since 2.2, moderator action alert cannot be sent if the user is a team member (#6)
 - **Fix:** Since 2.2, team members are unable to post new resource updates (#5)
 - **Fix:** User who is not team member and made the release cannot download without permission (#7)
