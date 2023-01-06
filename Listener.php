@@ -14,6 +14,8 @@ class Listener
      * @param array $updates
      *
      * @return void
+     *
+     * @noinspection PhpUnusedParameterInspection
      */
     public static function userContentChangeInit(UserContentChangeSvc $changeService, array &$updates) : void
     {

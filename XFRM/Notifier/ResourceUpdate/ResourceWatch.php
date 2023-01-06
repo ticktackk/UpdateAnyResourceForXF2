@@ -26,40 +26,43 @@ class ResourceWatch extends XFCP_ResourceWatch
      */
     public function sendAlert(UserEntity $user)
     {
-        /** @var ExtendedResourceUpdateEntity $update */
-        $update = $this->update;
+        try
+        {
+            $update = $this->update;
+            $resource = $update->Resource;
 
-        return $this->basicAlert(
-            $user, $update->tck_uar_user_id, $update->tck_uar_username, 'resource_update', $update->resource_update_id, 'insert'
-        );
+            $originalId = null;
+            $originalName = null;
+
+            if ($this->isUsingXFRM22ForTckUpdateAnyResource())
+            {
+                $originalId = $resource->user_id;
+                $originalName = $resource->username;
+
+                $resource->setAsSaved('user_id', $update->tck_uar_user_id);
+                $resource->setAsSaved('username', $update->tck_uar_username);
+            }
+
+            return parent::sendAlert($user);
+        }
+        finally
+        {
+            if (!is_null($originalId) && !is_null($originalName))
+            {
+                $resource->setAsSaved('user_id', $originalId);
+                $resource->setAsSaved('username', $originalName);
+            }
+        }
     }
 
-    /**
-     * @return bool
-     */
-    public function sendEmail(UserEntity $user)
+    protected function isUsingXFRM22ForTckUpdateAnyResource() : bool
     {
-        if (!$user->email || $user->user_state !== 'valid')
+        $addOns = $this->app()->container('addon.cache');
+        if (!isset($addOns['XFRM']))
         {
-            return false;
+            return false; // wut
         }
 
-        $update = $this->update;
-
-        $params = [
-            'update' => $update,
-            'resource' => $update->Resource,
-            'category' => $update->Resource->Category,
-            'receiver' => $user
-        ];
-
-        $template = $this->getWatchEmailTemplateName();
-
-        $this->app()->mailer()->newMail()
-            ->setToUser($user)
-            ->setTemplate($template, $params)
-            ->queue();
-
-        return true;
+        return $addOns['XFRM'] >= 2020010;
     }
 }

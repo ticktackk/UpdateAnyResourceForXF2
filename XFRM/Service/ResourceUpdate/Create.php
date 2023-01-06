@@ -2,8 +2,6 @@
 
 namespace TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate;
 
-use XF\App as BaseApp;
-use XFRM\Entity\ResourceItem as ResourceItemEntity;
 use XF\Entity\Post as PostEntity;
 use TickTackk\UpdateAnyResource\XFRM\Entity\ResourceUpdate as ExtendedResourceUpdateEntity;
 use TickTackk\UpdateAnyResource\XFRM\Service\ResourceUpdate\Preparer as ExtendedResourceUpdatePreparerSvc;

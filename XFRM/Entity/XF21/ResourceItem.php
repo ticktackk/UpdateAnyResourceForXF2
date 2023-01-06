@@ -15,6 +15,8 @@ class ResourceItem extends XFCP_ResourceItem
 
     /**
      * @return ResourceUpdateEntity|ExtendedResourceUpdateEntity
+     *
+     * @noinspection PhpSignatureMismatchDuringInheritanceInspection
      */
     public function getNewUpdate()
     {
@@ -25,6 +27,8 @@ class ResourceItem extends XFCP_ResourceItem
 
     /**
      * @return ResourceVersionEntity|ExtendedResourceVersionEntity
+     *
+     * @noinspection PhpSignatureMismatchDuringInheritanceInspection
      */
     public function getNewVersion()
     {
