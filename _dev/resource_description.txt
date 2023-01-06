@@ -5,7 +5,20 @@ Allows users with permission to add new update to any resource
 [LIST]
 [*]PHP 7.3+
 [*]XenForo Resource Manager 2.1.4+
+[*]Standard Library by Xon v1.10.0+
 [/LIST]
+[HEADING=1]Options[/HEADING]
+[HEADING=3]XenForo Resource Manager[/HEADING]
+[TABLE]
+[TR]
+[TH]Name[/TH]
+[TH]Description[/TH]
+[/TR]
+[TR]
+[TD]New resource update reply to discussion thread as resource creator[/TD]
+[TD]If checked, post made in discussion thread about new resource update will be made as resource creator.[/TD]
+[/TR]
+[/TABLE]
 [HEADING=1]Permissions[/HEADING]
 [HEADING=3]Resource moderator permissions[/HEADING]
 [LIST]
