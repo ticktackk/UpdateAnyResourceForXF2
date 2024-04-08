@@ -29,7 +29,7 @@ trait ResourceItemTrait
     public function canReleaseUpdate(&$error = null)
     {
         $visitor = \XF::visitor();
-        $canReleaseUpdate = parent::canEdit($error);
+        $canReleaseUpdate = parent::canReleaseUpdate($error);
 
         $isTeamMember = false;
         if (method_exists($this, 'isTeamMember'))
