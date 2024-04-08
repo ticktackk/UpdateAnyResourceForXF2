@@ -1,6 +1,6 @@
 {
     "event_id": "user_content_change_init",
-    "execute_order": 5,
+    "execute_order": 6501,
     "callback_class": "TickTackk\\UpdateAnyResource\\Listener",
     "callback_method": "userContentChangeInit",
     "active": true,

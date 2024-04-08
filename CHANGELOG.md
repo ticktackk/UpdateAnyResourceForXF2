@@ -4,6 +4,7 @@ CHANGELOG
 ## 1.1.2 (`1000270`)
 
 - **Fix:** Editing permission is checked instead of update own resource (#16)
+- **Fix:** Execution order of code event listener does not match that of resource ID (#15)
 
 ## 1.1.1 (`1000170`)
 
