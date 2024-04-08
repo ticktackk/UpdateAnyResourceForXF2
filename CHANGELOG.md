@@ -1,6 +1,10 @@
 CHANGELOG
 ==========================
 
+## 1.1.2 (`1000270`)
+
+- **Fix:** Editing permission is checked instead of update own resource (#16)
+
 ## 1.1.1 (`1000170`)
 
 - **New:** Allow the ability to replicate native create thread reply for resource update under resource owner (#10)
